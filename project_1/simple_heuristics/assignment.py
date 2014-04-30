@@ -62,9 +62,11 @@ def simple_heuristic(file_path):
     predictions = {}
     df = pandas.read_csv(file_path)
     for passenger_index, passenger in df.iterrows():
-        #
-        # Your code here
-        #
+        if passenger['Sex'] == 'female' or passenger['Pclass'] == 1 and passenger['Age'] <= 18:
+            predictions[passenger['PassengerId']] = 1
+        else:
+            predictions[passenger['PassengerId']] = 0
+
     return predictions
 
 def check_accuracy(file_name):
